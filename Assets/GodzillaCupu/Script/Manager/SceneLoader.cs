@@ -2,60 +2,61 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Build.Pipeline;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace GodzillaCupu.Manager
 {
-    [Serializable]
-    public class LoadingPanel
-    {
-        [Serializable]
-        public class LoadingBar
-        {
-            public GameObject barProgres;
-            public TextMeshProUGUI loadingText;
-            public TextMeshProUGUI presentageText;
-        }
-        public GameObject loadingPanel;
-        public List<Image> backgroundImages;
-        public TextMeshProUGUI loadingText;
-        public TextMeshProUGUI loadingTipsText;
-        public LoadingBar loadingBar;
-        public bool isActive = false;
-    }
-
     public class SceneLoader : MonoBehaviour
     {
-        [SerializeField] private LoadingPanel loadingPanel;
-        public string currentScene{get; private set;}
+        [SerializeField] private Scene currentScene;
+        public string currentSceneName{get; private set; }
+        public float loadingProgresScene { get; private set; }
 
-
+        public UnityEvent<float> OnLoadSceneProgress;
 
         public static SceneLoader instance;
         void Awake()
         {
             if(instance == null) instance = this;
             else Destroy(this);
-
-            if(loadingPanel == null)
-                loadingPanel = new LoadingPanel();
-            
-        }
-
-        // This Metod Not Complate Yet
-        public void LoadSceneAddresable(string id)
-        {
-            Addressables.LoadSceneAsync(id,LoadSceneMode.Additive);
         }
 
         public string GetCurrentScene()
         {
-            string _currentScene =  SceneManager.GetActiveScene().name;
-            return currentScene = _currentScene;
+            currentScene = SceneManager.GetActiveScene();
+            currentSceneName = currentScene.name;
+            return currentSceneName;
         }
+
+        public void LoaderScene(string id)
+        {
+            if(currentScene != null)
+                UnloaderScene(currentSceneName);
+
+            AsyncOperation _sceneAsyc = SceneManager.LoadSceneAsync(id,LoadSceneMode.Additive);
+            StartCoroutine(GetLoadProgress(_sceneAsyc));
+            _sceneAsyc.completed += (asyc) => GetCurrentScene();
+        }
+
+        IEnumerator GetLoadProgress(AsyncOperation asyncOperation)
+        {
+            while (!asyncOperation.isDone)
+            {
+                loadingProgresScene = Mathf.Clamp01(asyncOperation.progress / 0.9f); // 0.9 is the completion value
+                
+                OnLoadSceneProgress?.Invoke(loadingProgresScene*100);
+
+                // You can use the progress value for updating a loading bar or displaying progress in some way
+                Debug.Log("Loading progress: " + loadingProgresScene * 100 + "%");
+
+                yield return null;
+            }
+        }
+
+        public void UnloaderScene(string id) => SceneManager.UnloadSceneAsync(id);
     }
 }
