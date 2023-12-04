@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,12 +12,11 @@ using UnityEngine.UI;
 namespace GodzillaCupu.Manager
 {
     public class SceneLoader : MonoBehaviour
-    {
+    {   
         [SerializeField] private Scene currentScene;
         public string currentSceneName{get; private set; }
         public float loadingProgresScene { get; private set; }
-
-        public UnityEvent<float> OnLoadSceneProgress;
+        private UnityEvent<float> OnLoadSceneProgress;
 
         public static SceneLoader instance;
         void Awake()

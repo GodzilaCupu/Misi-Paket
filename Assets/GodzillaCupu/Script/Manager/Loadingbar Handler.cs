@@ -55,8 +55,9 @@ namespace GodzillaCupu.Manager
         [SerializeField] private float progressLoading;
         [SerializeField] private SceneLoader sceneLoader;
 
-        private static LoadingbarHandler instance;
+        public string loadingStatus = "Done";
 
+        public static LoadingbarHandler instance;
         private void Awake()
         {
             if(instance == null)
@@ -66,21 +67,19 @@ namespace GodzillaCupu.Manager
 
             if(sceneLoader == null)
                 sceneLoader = SceneLoader.instance;
-            
-            loadingBar.CheckComponent();
-            loadingPanel.CheckComponent();
         }
 
         private void Start()
         {
-
+            // loadingBar.CheckComponent();
+            // loadingPanel.CheckComponent();
         }
 
         private void OpenLoadingPanel()
         {
             // Gameobject di open
             // get progress
-            sceneLoader.OnLoadSceneProgress.AddListener(GetLoadingProgress);
+            // sceneLoader.OnLoadSceneProgress.AddListener(GetLoadingProgress);
 
             // close game object
         }

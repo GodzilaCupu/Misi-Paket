@@ -1,10 +1,11 @@
-Color Palate :
-    #Scene-Menu
+#Scene-Menu
     - Title Text 
-        Main : FF5600
-        Shadow : 4D2900
+        Color Main : FF5600
+        Color Shadow : 4D2900
+        Font : Gluten-Regular SDF + Italic
     
     - Main Button
-        Main : FFFFFF -> Overlaying
-        Clicked : B2B2B2 -> Overlaying
-        Text : FFFFFF
+        Color Main : FFFFFF -> Overlaying
+        Color Clicked : B2B2B2 -> Overlaying
+        Color Text : FFFFFF
+    
