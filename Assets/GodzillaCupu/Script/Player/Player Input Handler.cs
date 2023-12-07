@@ -24,7 +24,7 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
     ""name"": ""Player Input Handler"",
     ""maps"": [
         {
-            ""name"": ""Desktop"",
+            ""name"": ""Player"",
             ""id"": ""71696d75-e940-42cf-a55a-f1d02a2dd912"",
             ""actions"": [
                 {
@@ -132,18 +132,28 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Joystick>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
         }
     ]
 }");
-        // Desktop
-        m_Desktop = asset.FindActionMap("Desktop", throwIfNotFound: true);
-        m_Desktop_Move = m_Desktop.FindAction("Move", throwIfNotFound: true);
-        m_Desktop_Jump = m_Desktop.FindAction("Jump", throwIfNotFound: true);
-        m_Desktop_Pause = m_Desktop.FindAction("Pause", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -202,28 +212,28 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Desktop
-    private readonly InputActionMap m_Desktop;
-    private List<IDesktopActions> m_DesktopActionsCallbackInterfaces = new List<IDesktopActions>();
-    private readonly InputAction m_Desktop_Move;
-    private readonly InputAction m_Desktop_Jump;
-    private readonly InputAction m_Desktop_Pause;
-    public struct DesktopActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Move;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Pause;
+    public struct PlayerActions
     {
         private @PlayerInputHandler m_Wrapper;
-        public DesktopActions(@PlayerInputHandler wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Desktop_Move;
-        public InputAction @Jump => m_Wrapper.m_Desktop_Jump;
-        public InputAction @Pause => m_Wrapper.m_Desktop_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_Desktop; }
+        public PlayerActions(@PlayerInputHandler wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DesktopActions set) { return set.Get(); }
-        public void AddCallbacks(IDesktopActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_DesktopActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_DesktopActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -235,7 +245,7 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
             @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(IDesktopActions instance)
+        private void UnregisterCallbacks(IPlayerActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -248,21 +258,21 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
             @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(IDesktopActions instance)
+        public void RemoveCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_DesktopActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IDesktopActions instance)
+        public void SetCallbacks(IPlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_DesktopActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_DesktopActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public DesktopActions @Desktop => new DesktopActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
     private int m_DesktopSchemeIndex = -1;
     public InputControlScheme DesktopScheme
     {
@@ -272,7 +282,7 @@ public partial class @PlayerInputHandler: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_DesktopSchemeIndex];
         }
     }
-    public interface IDesktopActions
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

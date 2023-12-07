@@ -2,7 +2,7 @@
     "name": "Player Input Handler",
     "maps": [
         {
-            "name": "Desktop",
+            "name": "Player",
             "id": "71696d75-e940-42cf-a55a-f1d02a2dd912",
             "actions": [
                 {
@@ -110,7 +110,17 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": false,
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

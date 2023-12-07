@@ -25,8 +25,18 @@ namespace GodzillaCupu.Manager
             else Destroy(this);
         }
 
+        void Start()
+        {
+            GetCurrentScene();
+            LoaderScene("Main Menu");
+        }
+
         public string GetCurrentScene()
         {
+            int _sceneCount = SceneManager.loadedSceneCount;
+            if (_sceneCount > 1)
+                SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
+                
             currentScene = SceneManager.GetActiveScene();
             currentSceneName = currentScene.name;
             return currentSceneName;
@@ -34,8 +44,9 @@ namespace GodzillaCupu.Manager
 
         public void LoaderScene(string id)
         {
-            if(currentScene != null)
-                UnloaderScene(currentSceneName);
+            int _sceneCount = SceneManager.loadedSceneCount;
+            if (_sceneCount > 1)
+                SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
 
             AsyncOperation _sceneAsyc = SceneManager.LoadSceneAsync(id,LoadSceneMode.Additive);
             StartCoroutine(GetLoadProgress(_sceneAsyc));
@@ -58,5 +69,6 @@ namespace GodzillaCupu.Manager
         }
 
         public void UnloaderScene(string id) => SceneManager.UnloadSceneAsync(id);
+        public void UnloaderScene(int id) => SceneManager.UnloadSceneAsync(id);
     }
 }
