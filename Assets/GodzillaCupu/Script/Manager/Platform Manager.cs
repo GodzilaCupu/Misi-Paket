@@ -8,16 +8,17 @@ namespace GodzillaCupu.Manager
 {
     public class PlatformManager : MonoBehaviour
     {
-        
         private PlayerPlatform _currentPlatform;
         public PlayerPlatform CurrentPlatform{get => _currentPlatform;}
         public RuntimePlatform testPlatform;
         public List<PlatformUI> _ui;
-        public static PlatformManager instace;
+        public static PlatformManager instance {get; private set;}
         void Awake()
         {
-            if(instace==null) instace = this;
-            else Destroy(this);
+            if (instance != null && instance != this)
+                Destroy(instance);
+            else
+                instance = this;
 
             // _currentPlatform = CheckPlayerPlatform(Application.platform); 
             _currentPlatform = CheckPlayerPlatform(testPlatform);
@@ -26,7 +27,6 @@ namespace GodzillaCupu.Manager
         void Start()
         {
             InitUI(_currentPlatform);
-
         }
 
         private PlayerPlatform CheckPlayerPlatform(RuntimePlatform platfom)
@@ -55,13 +55,12 @@ namespace GodzillaCupu.Manager
             public PlayerPlatform platform;
             public GameObject obj;
         }
-
-
-        [Serializable]
-        public enum PlayerPlatform
-        {
-            Mobile,
-            Desktop
-        }
+    }
+    
+    [Serializable]
+    public enum PlayerPlatform
+    {
+        Mobile,
+        Desktop
     }
 }

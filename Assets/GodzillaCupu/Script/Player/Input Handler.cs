@@ -31,20 +31,17 @@ namespace GodzillaCupu.Player
             get => canJump;
         }
 
-        public static InputHandler instance;
+        public static InputHandler instance { get; private set; }
 
         public void Awake()
         {
-            if (instance == null)
-                instance = this;
-            else
+            if (instance != null && instance != this)
                 Destroy(instance);
+            else
+                instance = this;
 
             if (_inputs == null)
                 _inputs = new PlayerInputHandler();
-
-            if (_platform == null)
-                _platform = PlatformManager.instace;
 
             if (_joystick == null)
                 Debug.LogError("[JOYSTICK INPUT] joystick is empty");
@@ -52,9 +49,15 @@ namespace GodzillaCupu.Player
 
         public void OnEnable()
         {
-            if(Application.platform != RuntimePlatform.Android) EnableKeyboardControl();
+            if (Application.platform != RuntimePlatform.Android) EnableKeyboardControl();
             else
             GetMovementFromJoystick_UI();
+        }
+
+        void Start()
+        {
+            if (_platform == null)
+                _platform = PlatformManager.instance;
         }
 
         public void OnDisable()
@@ -65,7 +68,7 @@ namespace GodzillaCupu.Player
         private void EnableKeyboardControl()
         {
             _inputs.Enable();
-
+            
             _inputs.Player.Pause.performed += (ctx) => OnEscPressed?.Invoke();
 
             _inputs.Player.Movement.performed += (ctx) => _move = ctx.ReadValue<Vector2>();

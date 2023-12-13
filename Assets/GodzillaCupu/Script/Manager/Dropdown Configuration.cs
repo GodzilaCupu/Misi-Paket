@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using GodzillaCupu.Player;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace GodzillaCupu.Manager
@@ -11,6 +10,7 @@ namespace GodzillaCupu.Manager
     public class DropdownConfiguration : MonoBehaviour
     {
         [SerializeField] private InputHandler input;
+        [SerializeField] private PlatformManager platform;
         [SerializeField] private GameObject dropdownObj;
         [SerializeField] private TMP_Dropdown dropdownTMP;
 
@@ -31,13 +31,12 @@ namespace GodzillaCupu.Manager
             get => dropdownTMP.value;
         }
 
-        void Awake()
-        {
-            if(input == null) input = InputHandler.instance;
-        }
 
         void Start()
         {
+            if (input == null) input = InputHandler.instance;
+            if (platform == null) platform = PlatformManager.instance;
+
             FillData(dropdownTMP);
             ChangeJoystickType(input.JoystickType);
         }

@@ -18,11 +18,13 @@ namespace GodzillaCupu.Manager
         public float loadingProgresScene { get; private set; }
         private UnityEvent<float> OnLoadSceneProgress;
 
-        public static SceneLoader instance;
+        public static SceneLoader instance{get;private set;}
         void Awake()
         {
-            if(instance == null) instance = this;
-            else Destroy(this);
+            if (instance != null && instance != this)
+                Destroy(instance);
+            else
+                instance = this;
         }
 
         void Start()
