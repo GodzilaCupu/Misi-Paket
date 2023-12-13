@@ -8,6 +8,40 @@ namespace GodzillaCupu.Manager
 {
     public class SliderConfiguration : MonoBehaviour
     {
+        [SerializeField] private string id;
+        public string ID
+        {
+            get => id;
+            set => id = value;
+        }
+        
+        public IconSettings iconSettings;
+        public SliderSettings sliderSettings;
+        public float SliderValue() => sliderSettings.value;
+
+        private void Start()
+        {
+            if (id == string.Empty || id == "")
+                Debug.LogError($"[ID SLIDER] id from {gameObject.name} is empty, check Again");
+            
+            this.gameObject.name = id + " Slider";
+            iconSettings.SetIcon(
+                iconSettings._object,
+                iconSettings.haveIcon,
+                iconSettings.image,
+                iconSettings.color
+            );
+            
+            sliderSettings.SetHandle(
+                sliderSettings.sliderObject,
+                sliderSettings.haveHandle,
+                sliderSettings.baseColorBackground,
+                sliderSettings.selectedColorBackground,
+                sliderSettings.spriteHandle,
+                sliderSettings.colorHandle
+            );
+        }
+
         [Serializable]
         public class IconSettings
         {
@@ -36,7 +70,7 @@ namespace GodzillaCupu.Manager
         {
             public GameObject sliderObject;
             public Slider slider => sliderObject.GetComponent<Slider>();
-            public float value {get => slider.value;}
+            public float value { get => slider.value; }
 
             [Header("Slider Background")]
             public Color baseColorBackground;
@@ -79,38 +113,5 @@ namespace GodzillaCupu.Manager
             }
         }
 
-        [SerializeField] private string id;
-        public string ID
-        {
-            get => id;
-            set => id = value;
-        }
-        
-        public IconSettings iconSettings;
-        public SliderSettings sliderSettings;
-        public float SliderValue() => sliderSettings.value;
-
-        private void Start()
-        {
-            if (id == string.Empty || id == "")
-                Debug.LogError($"[ID SLIDER] id is empty, check Again");
-            
-            this.gameObject.name = id + " Slider";
-            iconSettings.SetIcon(
-                iconSettings._object,
-                iconSettings.haveIcon,
-                iconSettings.image,
-                iconSettings.color
-            );
-            
-            sliderSettings.SetHandle(
-                sliderSettings.sliderObject,
-                sliderSettings.haveHandle,
-                sliderSettings.baseColorBackground,
-                sliderSettings.selectedColorBackground,
-                sliderSettings.spriteHandle,
-                sliderSettings.colorHandle
-            );
-        }
     }
 }
