@@ -39,6 +39,7 @@ namespace GodzillaCupu.Manager
                 
             currentScene = SceneManager.GetActiveScene();
             currentSceneName = currentScene.name;
+            Debug.Log($"{currentSceneName} current scene");
             return currentSceneName;
         }
 

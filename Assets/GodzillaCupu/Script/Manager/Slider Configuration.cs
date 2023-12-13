@@ -93,7 +93,7 @@ namespace GodzillaCupu.Manager
         private void Start()
         {
             if (id == string.Empty || id == "")
-                Debug.LogError($"[ID SLIDER] id is empty, check Again");
+                Debug.LogError($"[ID SLIDER] id from {gameObject.name} is empty, check Again");
             
             this.gameObject.name = id + " Slider";
             iconSettings.SetIcon(

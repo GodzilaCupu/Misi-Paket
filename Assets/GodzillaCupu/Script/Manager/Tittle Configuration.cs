@@ -45,7 +45,7 @@ public class TittleConfiguration : MonoBehaviour
             _settings.size,
             _settings.fontAsset,
             _settings.mainColor,
-            true,
+            _settings.haveShadow,
             _text.shadowText,
             _settings.shadowColor
         );
@@ -66,6 +66,8 @@ public class TittleConfiguration : MonoBehaviour
         displayText.fontSize = size;
         displayText.font = asset;
         displayText.color = mainColor;
+
+        displayShadowText.gameObject.SetActive(haveShadow);
 
         if (!haveShadow)
             return;

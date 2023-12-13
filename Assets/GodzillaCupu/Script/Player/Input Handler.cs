@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using GodzillaCupu.Manager;
-using UnityEngine.UI;
+
 
 namespace GodzillaCupu.Player
 {
@@ -15,6 +15,9 @@ namespace GodzillaCupu.Player
 
         [HideInInspector] public UnityEvent OnEscPressed;
         [HideInInspector] public UnityEvent OnSpacePressed;
+
+        [SerializeField] private JoystickType joystickType = JoystickType.Floating;
+        public JoystickType JoystickType{get=>joystickType; set => joystickType = value;}
 
         private Vector2 _move;
         public Vector2 MoveDirection
