@@ -243,7 +243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &99850313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -626,7 +626,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -771,6 +771,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3834339521932240623, guid: 9658615c9bb1d954c9c70ff41cf7e3cf,
+        type: 3}
+      propertyPath: id
+      value: MISI PAKET !!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3834339521932240623, guid: 9658615c9bb1d954c9c70ff41cf7e3cf,
+        type: 3}
+      propertyPath: _settings.haveShadow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6092959523943360930, guid: 9658615c9bb1d954c9c70ff41cf7e3cf,
+        type: 3}
+      propertyPath: id
+      value: Misi Paket !!!
+      objectReference: {fileID: 0}
     - target: {fileID: 6092959523943360930, guid: 9658615c9bb1d954c9c70ff41cf7e3cf,
         type: 3}
       propertyPath: _settings.size
@@ -787,6 +802,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: add0b34a84d052f4d9694ea77d50eb0d,
         type: 2}
+    - target: {fileID: 6092959523943360930, guid: 9658615c9bb1d954c9c70ff41cf7e3cf,
+        type: 3}
+      propertyPath: _settings.haveShadow
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -807,18 +827,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1093951176226946876, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
+      propertyPath: _anim.type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1093951176226946876, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
+        type: 3}
       propertyPath: _anim.style
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1093951176226946876, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.newPos
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1093951176226946876, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.duration
-      value: 1.2
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1093951176226946876, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
@@ -832,18 +857,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2373496385726991308, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
+      propertyPath: _anim.type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373496385726991308, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
+        type: 3}
       propertyPath: _anim.style
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2373496385726991308, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.newPos
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2373496385726991308, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.duration
-      value: 1.2
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2373496385726991308, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
@@ -1012,18 +1042,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8420445209538776713, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
+      propertyPath: _anim.type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8420445209538776713, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
+        type: 3}
       propertyPath: _anim.style
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8420445209538776713, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.newPos
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8420445209538776713, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}
       propertyPath: _anim.duration
-      value: 1.2
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8420445209538776713, guid: e1c6293efd4befe4c9d2af37d4cb34bf,
         type: 3}

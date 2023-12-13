@@ -18,24 +18,38 @@ namespace GodzillaCupu.Manager
         public float loadingProgresScene { get; private set; }
         private UnityEvent<float> OnLoadSceneProgress;
 
-        public static SceneLoader instance;
+        public static SceneLoader instance{get;private set;}
         void Awake()
         {
-            if(instance == null) instance = this;
-            else Destroy(this);
+            if (instance != null && instance != this)
+                Destroy(instance);
+            else
+                instance = this;
+        }
+
+        void Start()
+        {
+            GetCurrentScene();
+            LoaderScene("Main Menu");
         }
 
         public string GetCurrentScene()
         {
+            int _sceneCount = SceneManager.loadedSceneCount;
+            if (_sceneCount > 1)
+                SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
+                
             currentScene = SceneManager.GetActiveScene();
             currentSceneName = currentScene.name;
+            Debug.Log($"{currentSceneName} current scene");
             return currentSceneName;
         }
 
         public void LoaderScene(string id)
         {
-            if(currentScene != null)
-                UnloaderScene(currentSceneName);
+            int _sceneCount = SceneManager.loadedSceneCount;
+            if (_sceneCount > 1)
+                SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
 
             AsyncOperation _sceneAsyc = SceneManager.LoadSceneAsync(id,LoadSceneMode.Additive);
             StartCoroutine(GetLoadProgress(_sceneAsyc));
@@ -58,5 +72,6 @@ namespace GodzillaCupu.Manager
         }
 
         public void UnloaderScene(string id) => SceneManager.UnloadSceneAsync(id);
+        public void UnloaderScene(int id) => SceneManager.UnloadSceneAsync(id);
     }
 }
