@@ -1,5 +1,5 @@
 {
-    "name": "Player Input Handler",
+    "name": "PlayerInputActions",
     "maps": [
         {
             "name": "Player",
@@ -27,7 +27,7 @@
                     "name": "Pause",
                     "type": "Button",
                     "id": "ace90c73-2eca-45d6-b98f-6c6917d5bfa9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -63,6 +63,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Desktop",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb28e40d-a54a-4989-8814-669430f16ad4",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
