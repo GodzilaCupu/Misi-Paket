@@ -94,7 +94,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 5dd5559e64c42c345a46a1ed10ba2722, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 7def76a830728234a8721c155a0cfe22, type: 2}
 --- !u!196 &5
 NavMeshSettings:
   serializedVersion: 2
@@ -9272,71 +9272,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineDrawScale: 42
   animationCurve:
-    serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 0.0043185162
       inSlope: -0.24537197
       outSlope: -0.24537197
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.36758202
+    - time: 0.36758202
       value: -0.1446852
       inSlope: 0.12947582
       outSlope: 0.12947582
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.67649233
+    - time: 0.67649233
       value: 1.3504447
       inSlope: 0.28669286
       outSlope: 0.28669286
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8201652
+      tangentMode: 10
+    - time: 0.8201652
       value: 0.73744607
       inSlope: 1.0325358
       outSlope: 1.0325358
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8815197
+      tangentMode: 10
+    - time: 0.8815197
       value: 1.125924
       inSlope: 1.5221101
       outSlope: 1.5221101
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.9379912
+      tangentMode: 10
+    - time: 0.9379912
       value: 0.9402751
       inSlope: -1.1621548
       outSlope: -1.1621548
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
+      tangentMode: 10
+    - time: 1
       value: 1
       inSlope: 0.9631686
       outSlope: 0.9631686
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      tangentMode: 10
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
