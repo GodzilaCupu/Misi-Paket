@@ -10,13 +10,13 @@ namespace Mangkus.Player.Movement
         private PlayerMovementView view;
         private IMovementInput input;
 
-        [SerializeField] private MonoBehaviour inputProvider; // Must implement IMovementInput
+        [SerializeField] private InputType inputType; // Must implement IMovementInput
 
         private void Awake()
         {
             model = new PlayerMovementModel();
             view = GetComponent<PlayerMovementView>();
-            input = inputProvider as IMovementInput;
+            input = GetInputProvider();
 
             if (input == null)
             {
@@ -30,5 +30,26 @@ namespace Mangkus.Player.Movement
             view.Move(dir, model.MoveSpeed);
             view.Rotate(dir, model.RotationSpeed);
         }
+
+        private IMovementInput GetInputProvider()
+        {
+            switch (inputType)
+            {
+                case InputType.keyboard:
+                    Debug.Log("Keyboard input selected");
+                    var keyboardProvider = this.gameObject.AddComponent<KeyboardModel>();
+                    return keyboardProvider as IMovementInput;
+
+                case InputType.joystick:
+                    var joystickProvider = this.gameObject.AddComponent<JoystickModel>();
+                    return joystickProvider as IMovementInput;
+
+                default:
+                    Debug.LogError("Invalid input type selected");
+                    return null;
+            }
+        }
     }
+
+
 }
