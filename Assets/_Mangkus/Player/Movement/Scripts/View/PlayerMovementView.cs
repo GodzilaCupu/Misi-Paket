@@ -2,19 +2,20 @@ using UnityEngine;
 
 namespace Mangkus.Player.Movement
 {
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerMovementView : MonoBehaviour
     {
-        private Rigidbody rb;
+        private CharacterController characterController;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
+            characterController = GetComponent<CharacterController>();
         }
 
         public void Move(Vector3 direction, float speed)
         {
             Vector3 velocity = direction * speed;
-            rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+            characterController.Move(velocity * Time.deltaTime);
         }
 
         public void Rotate(Vector3 direction, float rotationSpeed)
@@ -27,3 +28,4 @@ namespace Mangkus.Player.Movement
         }
     }
 }
+

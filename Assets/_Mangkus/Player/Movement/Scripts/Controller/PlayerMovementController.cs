@@ -1,5 +1,5 @@
 using UnityEngine;
-using Mangkus.Input;
+using Mangkus.Player.Input;
 
 namespace Mangkus.Player.Movement
 {
