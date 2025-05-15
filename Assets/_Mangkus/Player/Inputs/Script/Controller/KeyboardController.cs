@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Mangkus.Player.Input
 {
-    public class KeyboardModel : MonoBehaviour, IMovementInput
+    public class KeyboardController : MonoBehaviour, IMovementInput
     {
         private InputSystem_Actions inputActions;
         public Vector2 moveInput{get; private set;}
@@ -12,18 +12,16 @@ namespace Mangkus.Player.Input
             inputActions = new InputSystem_Actions();
         }
 
-        void Start()
+        private void OnEnable()
         {
             inputActions.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
             inputActions.Player.Move.canceled += ctx => moveInput = Vector2.zero;
-        }
-
-        private void OnEnable()
-        {
             inputActions.Enable();
         }
         private void OnDisable()
         {
+            inputActions.Player.Move.performed -= ctx => moveInput = ctx.ReadValue<Vector2>();
+            inputActions.Player.Move.canceled -= ctx => moveInput = Vector2.zero;
             inputActions.Disable();
         }   
         
